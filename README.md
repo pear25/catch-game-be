@@ -11,8 +11,12 @@ npm install
 1. Copy the `.env` file into the root project directory of the repository
 2. Source the `.env` file onto your terminal
 
-```
+```python
+# zsh/bash
 source .env
+
+# powershell
+. <PATH_TO_CURRENT_REPO>/.env
 ```
 
 3. Run the server locally
