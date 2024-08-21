@@ -1,23 +1,26 @@
-import 'reflect-metadata';
-import { DataSource } from 'typeorm';
-import { User } from './entity/User';
-import { config } from 'dotenv';
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { User } from "./entity/User";
+import { config } from "dotenv";
+import * as PostgressConnectionStringParser from "pg-connection-string";
 
 config();
+const db_url = process.env.PG_CONNECTION_STRING;
+const connectionOptions = PostgressConnectionStringParser.parse(db_url);
 
 export const AppDataSource = new DataSource({
   type: process.env.DB_TYPE as any,
-  host: process.env.PG_HOST,
-  port: parseInt(process.env.PG_PORT),
-  username: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-  database: process.env.PG_DATABASE,
+  host: connectionOptions.host,
+  port: parseInt(connectionOptions.port),
+  username: connectionOptions.user,
+  password: connectionOptions.password,
+  database: connectionOptions.database,
   synchronize: true,
   logging: false,
   entities: [User],
   migrations: [],
   subscribers: [],
-  ssl: {
-    rejectUnauthorized: false,
+  extra: {
+    ssl: true,
   },
 });
