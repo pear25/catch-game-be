@@ -22,6 +22,9 @@ async function main() {
 
   app.use(errorHandler);
   app.use('/user', userRoutes);
+  app.get('/', (_, res) => {
+    res.send('BE root');
+  });
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
