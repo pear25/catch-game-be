@@ -46,4 +46,4 @@ npm run start
 | ----------- | ------ | --------------------------------------- |
 | id          | uuid   | Generated unique identifier of the user |
 | name        | string | Name of the user entered in the form    |
-| score       | string | Score of the user from the game         |
+| score       | int | Score of the user from the game         |
